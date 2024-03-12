@@ -1,25 +1,25 @@
-from pony import orm
+from pony.orm import Database, Required, Set, PrimaryKey
 
-db = orm.Database("sqlite", "db.sqlite", create_db=True)
+db = Database("sqlite", "db.sqlite", create_db=True)
 
 
 class Participant(db.Entity):  # type: ignore
-    id = orm.PrimaryKey(int, auto=True)
-    name = orm.Required(str)
-    results = orm.Set("Results", reverse='participant1')  # type: ignore
+    id = PrimaryKey(int, auto=True)
+    name = Required(str)
+    categories = Set('Category')  # type: ignore
+    results = Set('Result')    # type: ignore
 
 
 class Category(db.Entity):  # type: ignore
-    id = orm.PrimaryKey(int, auto=True)
-    name = orm.Required(str)
+    id = PrimaryKey(int, auto=True)
+    name = Required(str)
+    participants = Set(Participant)
 
 
-class Results(db.Entity):  # type: ignore
-    id = orm.PrimaryKey(int, auto=True)
-    participant1 = orm.Required(Participant)
-    participant2 = orm.Required(Participant)
-    category = orm.Required(Category)
-    result = orm.Required(float)
+class Result(db.Entity):  # type: ignore
+    id = PrimaryKey(int, auto=True)
+    result = Required(float)
+    participants = Set(Participant)
 
 
 db.generate_mapping(create_tables=True)
