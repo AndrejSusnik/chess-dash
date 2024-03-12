@@ -1,0 +1,1 @@
+# Chess tournaments dashboard app
