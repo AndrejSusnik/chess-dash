@@ -1,0 +1,6 @@
+pony==0.7.17
+pony-stubs==0.5.2
+flask==3.0.0
+flask-cors==4.0.0
+flask-smorest==0.42.3
+marshmallow==3.20.2 
