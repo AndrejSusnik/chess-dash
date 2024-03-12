@@ -17,6 +17,7 @@ class ParticipantPostSchema(ma.Schema):
 class CategorySchema(ma.Schema):
     id = ma.fields.Integer()
     name = ma.fields.String()
+    description = ma.fields.String(default=None)
 
 
 class CategoryQuerySchema(ma.Schema):
@@ -25,6 +26,7 @@ class CategoryQuerySchema(ma.Schema):
 
 class CategoryPostSchema(ma.Schema):
     name = ma.fields.String()
+    description = ma.fields.String(default=None)
 
 
 class ResultSchema(ma.Schema):

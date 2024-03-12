@@ -3,6 +3,8 @@ from flask.views import MethodView
 from flask_smorest import Api, Blueprint  # type: ignore
 from flask_cors import CORS  # type: ignore
 
+import time
+
 from pony.orm import select, db_session
 
 from models import (ParticipantSchema, CategorySchema, ResultSchema,
@@ -64,6 +66,9 @@ class ParticipantView(MethodView):
 class Categories(MethodView):
     @blp.response(200, CategorySchema(many=True))
     def get(self):
+        # sleep 5
+        time.sleep(5)
+        
         with db_session:
             return select(c for c in Category)[:]
 
